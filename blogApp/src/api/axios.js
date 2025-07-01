@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://blog-app-q7fj.onrender.com/api',
 });
 
 // Her istekten önce token ekle
