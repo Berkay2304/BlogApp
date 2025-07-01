@@ -17,8 +17,10 @@ function RegisterPage() {
     setError('');
 
     try {
-      await axiosInstance.post('/register', { username, email, password });
-      navigate('/login');
+      const res = await axiosInstance.post('/register', { username, email, password });
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('username', res.data.username);
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Kayıt başarısız');
     }
@@ -51,6 +53,12 @@ function RegisterPage() {
           required
         />
         <button type="submit">Kayıt Ol</button>
+        <div className="auth-switch-text" style={{ marginTop: '1rem', textAlign: 'center', fontSize: '1rem', fontFamily: 'inherit' }}>
+          Zaten hesabın var mı?{' '}
+          <span className="auth-switch-link" onClick={() => navigate('/login')} style={{color: '#007bff', cursor: 'pointer', textDecoration: 'underline', fontWeight: 500}}>
+            Giriş yap
+          </span>
+        </div>
       </form>
     </div>
   );

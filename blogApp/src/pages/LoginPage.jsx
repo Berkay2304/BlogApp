@@ -16,9 +16,7 @@ function LoginPage() {
     setError('');
 
     try {
-      console.log("İstekten çönce");
       const res = await axiosInstance.post('/login', { email, password });
-      console.log("İstekten sonra");
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('username', res.data.username);
       navigate('/');
@@ -47,6 +45,12 @@ function LoginPage() {
           required
         />
         <button type="submit">Giriş Yap</button>
+        <div className="auth-switch-text" style={{ marginTop: '1rem', textAlign: 'center', fontSize: '1rem', fontFamily: 'inherit' }}>
+          Hesabın yok mu?{' '}
+          <span className="auth-switch-link" onClick={() => navigate('/register')} style={{color: '#007bff', cursor: 'pointer', textDecoration: 'underline', fontWeight: 500}}>
+            Kayıt ol
+          </span>
+        </div>
       </form>
     </div>
   );
